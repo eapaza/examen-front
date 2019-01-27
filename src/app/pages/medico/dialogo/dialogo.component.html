@@ -1,0 +1,16 @@
+<div class="example-container">
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="nombres" [(ngModel)]="medico.nombres">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="apellidos" [(ngModel)]="medico.apellidos">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="CMP" [(ngModel)]="medico.cmp">
+  </mat-form-field>  
+</div>
+<button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>
+

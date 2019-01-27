@@ -1,0 +1,55 @@
+<mat-toolbar>Signos Vitales</mat-toolbar>
+<form class="example-container" [formGroup]="form" (ngSubmit)="aceptar()" #consultaForm="ngForm">
+  <div class="example-container">
+
+    <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+        <input matInput placeHolder="ID" required formControlName="id">
+      </mat-form-field>
+    </div>
+    <div layout="row" flex>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Paciente" [matAutocomplete]="autoPaciente" [formControl]="myControlPaciente" formControlName="paciente">
+        <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="displayFn" (optionSelected)="seleccionarPaciente($event)">
+          <mat-option *ngFor="let p of filteredOptions | async" [value]="p">
+            {{p.nombres}} {{p.apellidos}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="button" (click)="openDialog()">
+        <mat-icon>person_add</mat-icon>
+        <span> Nuevo Paciente</span>
+      </button>
+    </div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha" formControlName="fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <!-- <button matSuffix [matDatepickerToggle]="picker"></button> -->
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Temperatura" [(ngModel)]="temperatura" formControlName="temperatura">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Pulso" [(ngModel)]="pulso" formControlName="pulso">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Ritmo Respiratorio" [(ngModel)]="ritmoRespiratorio" formControlName="ritmoRespiratorio">
+    </mat-form-field>
+
+    <!--    <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()">Registrar</button> -->
+    <button mat-raised-button color="primary" [disabled]="estadoBotonRegistrar()">
+        <mat-icon>done</mat-icon>
+        <span>Aceptar</span>
+      </button>
+    
+      <button mat-raised-button color="accent" type="button" routerLink='/signo'>
+        <mat-icon>close</mat-icon>
+        <span>Cancelar</span>
+      </button>
+  </div>
+</form>
